@@ -1,7 +1,5 @@
 class Vec3():
     def __init__(self, x=0.0, y=0.0, z=0.0):
-        """Constructor for Vec4
-        DO NOT MODIFY THIS METHOD"""
         self.values = [x, y, z]
 
     def mul(self, v):
@@ -13,7 +11,7 @@ class Vec3():
         return Vec3(new[0], new[1], new[2])
 
     def mulc(self, c):
-        """Element wise multiplication of vec4 by constant c
+        """Element wise multiplication of vec3 by constant c
         Returns the result as a new vector"""
         new = []
         for i in range(len(self.values)):
@@ -21,7 +19,7 @@ class Vec3():
         return Vec3(new[0], new[1], new[2])
 
     def add(self, v):
-        """Element wise addition of vec4 by vector v
+        """Element wise addition of vec3 by vector v
         Returns the result as a new vector"""
         new = []
         for i in range(len(self.values)):
@@ -29,7 +27,7 @@ class Vec3():
         return Vec3(new[0], new[1], new[2])
 
     def addc(self, c):
-        """Element wise addition of vec4 by constant c
+        """Element wise addition of vec3 by constant c
         Returns the result as a new vector"""
         new = []
         for i in range(len(self.values)):
@@ -37,7 +35,7 @@ class Vec3():
         return Vec3(new[0], new[1], new[2])
 
     def sub(self, v):
-        """Element wise subtraction of vec4 by vector v
+        """Element wise subtraction of vec3 by vector v
         Returns the result as a new vector"""
         new = []
         for i in range(len(self.values)):
@@ -45,7 +43,7 @@ class Vec3():
         return Vec3(new[0], new[1], new[2])
 
     def subc(self, c):
-        """Element wise subtraction of vec4 by constant
+        """Element wise subtraction of vec3 by constant
         Returns the result as a new vector"""
         new = []
         for i in range(len(self.values)):
@@ -53,8 +51,7 @@ class Vec3():
         return Vec3(new[0], new[1], new[2])
 
     def cross(self, v):
-        """Returns the cross product of self and vector v, ignore w in calculations
-        and set w of the resulting vector to 1"""
+        """Returns the cross product of self and vector v"""
         a = self.values
         new = [a[1] * v.values[2] - a[2] * v.values[1],
                a[2] * v.values[0] - a[0] * v.values[2],
@@ -70,8 +67,6 @@ class Vec3():
 
 class Matrix3():
     def __init__(self, row1=None, row2=None, row3=None):
-        """Constructor for Matrix4
-        DO NOT MODIFY THIS METHOD"""
         if row1 is None: row1 = Vec3()
         if row2 is None: row2 = Vec3()
         if row3 is None: row3 = Vec3()
@@ -87,7 +82,7 @@ class Matrix3():
     def mulV(self, vector):
         """Multiplication: Matrix times vector.
             'vector' is the vector with which to multiply.
-            Return the result as a new Vec4.
+            Return the result as a new Vec3.
             Make sure that you do not change self or the vector.
             return self * v"""
         new = []
@@ -104,7 +99,7 @@ class Matrix3():
     def mulM(self, m):
         """Multiplication: Matrix times Matrix.
             m is the matrix with which to multiply.
-            Return the result as a new Matrix4.
+            Return the result as a new Matrix3.
             Make sure that you do not change self or the other matrix.
             return this * m"""
         new = []
@@ -131,6 +126,7 @@ class Matrix3():
         return Matrix3(result[0], result[1], result[2])
 
     def detA(self):
+        """Returns the determinant of the matrix"""
         det =   self.m_values[0].values[0] * self.m_values[1].values[1] * self.m_values[2].values[2] + \
                 self.m_values[0].values[1] * self.m_values[1].values[2] * self.m_values[2].values[0] + \
                 self.m_values[0].values[2] * self.m_values[1].values[0] * self.m_values[2].values[1] - \
@@ -140,7 +136,7 @@ class Matrix3():
         return det
 
     def get_inverse(self):
-
+        """Returns the inverse matrix of the matrix"""
         det = self.detA()
 
         inverse = Matrix3(Vec3(self.m_values[1].values[1] * self.m_values[2].values[2] - self.m_values[1].values[2] * self.m_values[2].values[1],
